@@ -1,4 +1,4 @@
-# react_learning
+# learningreact
 
 Learning React for the Sunwize fullstack internship.
 

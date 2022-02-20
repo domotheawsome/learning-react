@@ -237,3 +237,186 @@ ANS: create small pieces to make something larger/greater than the individual pe
 
 
 */
+
+/* custom components */
+
+// saving jsx elements in a variable & rendering via react
+// doesn't allow flexibility to create components in react
+
+// function == allow code to execute just by calling the function
+// react function == create user interface by calling functions
+
+// use pascal case = capitalize first letter
+// wrap function call in angle brackets:
+
+function TemporaryName() {
+    return()
+}
+
+<TemporaryName />
+
+/**
+Challenge: 
+
+Part 1: Create a page of your own using a custom Page component
+
+It should return an ordered list with the reasons why you're
+excited to be learning React :)
+
+Render your list to the page
+
+ */
+
+import React from "react"
+import ReactDOM from "react-dom"
+
+function PageComponent() {
+    return (
+        <ol>
+            <li> So I can succeed in the internship</li>
+            <li> So I can put it on my resume</li>
+            <li> So I understand how front-end works</li>
+        </ol>
+    )
+}
+
+ReactDOM.render(<PageComponent />, document.getElementById("root"));
+
+/* custom components part 2 */
+
+/**
+Challenge: 
+
+Part 2: 
+- Add a `header` element with a nested `nav` element. Inside the `nav`,
+  include a `img` element with the image of the React logo inside
+  (src="./react-logo.png") and make sure to set the width to something
+  more manageable so it doesn't take up the whole screen
+- Add an `h1` with some text describing the page. (E.g. "Reasons
+  I'm excited to learn React"). Place it above the ordered list.
+- Add a `footer` after the list that says: 
+    "© 20xx <last name here> development. All rights reserved."
+ */
+
+    import React from "react"
+    import ReactDOM from "react-dom"
+    
+    function Page() {
+        return (
+            <div>
+                <header>
+                    <nav>
+                        <img src="./react-logo.png" alt="none" width="40"></img>
+                    </nav>
+                </header>
+                <h1>Reasons I'm excited to learn React</h1>
+                <ol>
+                    <li>It's a popular library, so I'll be 
+                        able to fit in with the cool kids!</li>
+                    <li>I'm more likely to get a job as a developer
+                        if I know React</li>
+                </ol>
+                <footer>© 20xx Meshorer development. All rights reserved.</footer>
+            </div>
+
+                    
+        )
+    }
+    
+    ReactDOM.render(<Page />, document.getElementById("root"))
+
+/* custom components quiz */
+
+/* Quiz!
+
+1. What is a React component?
+
+an independent and reusable bit of code. serve the same purpose as JS functions but work in isolation and return jsx (js objects) that turn into real dom eleemnts
+
+2. What's wrong with this code?
+```
+function myComponent() {
+    return (
+        <small>I'm tiny text!</small>
+    )
+}
+```
+
+not using pascal case
+
+3. What's wrong with this code?
+```
+function Header() {
+    return (
+        <header>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+            </nav>
+        </header>
+    )
+}
+
+ReactDOM.render(Header(), document.getElementById("root"))
+```
+
+not calling the function correctly
+should be <Header />
+surround with angle brackets as if it were an html tag
+create an instance of the component
+*/
+
+/* parent/child components */
+
+
+/**
+Challenge: 
+
+- Move the `footer` into its own component called "Footer" 
+  and render that component inside the Page component.
+- Move the `h1` and `ol` together into another component
+  called "MainContent" and render inside Page as well.
+*/
+
+function Header() {
+    return (
+        <header>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+            </nav>
+        </header>
+    )
+}
+
+function Content() {
+    return(
+        <div>
+            <h1>Reasons I'm excited to learn React</h1>
+            <ol>
+                <li>It's a popular library, so I'll be 
+                able to fit in with the cool kids!</li>
+                <li>I'm more likely to get a job as a developer
+                if I know React</li>
+            </ol>
+        </div>
+    )
+}
+
+function Footer() {
+    return(
+        <footer>
+                <small>© 2021 Ziroll development. All rights reserved.</small>
+            </footer>
+    )
+}
+
+function Page() {
+    return (
+        <div>
+            <Header />
+            <Content />
+            <Footer />
+        </div>
+    )
+}
+
+ReactDOM.render(<Page />, document.getElementById("root"))

@@ -449,9 +449,45 @@ function Header() {
     // react is turning JSX elements into native DOM elements
     // ul.className = xxx in vanilla js
 
-import Header from "./Header"
+import Header from "./my-app/src/components/Header"
 // ./ is a file in my own project director
 // not a package in dependencies
-import Footer from "./Footer"
-import MainContent from "./MainContent"
+import Footer from "./my-app/src/components/Footer"
+import MainContent from "./my-app/src/components/MainContent"
 
+
+/* quick mental outline */
+
+// in order to move navbar stuff all the way to the right (sticky to the right) set auto margin: 0.
+
+// create container div
+
+// surrounds whole page
+// main two sections
+// nav bar, main content
+// in nav, image and two title tags
+// in main, title and list items
+
+// next challenge, did in scrimba. can be visible via the my-app folder
+
+/**
+Challenge: Project setup
+
+- Create a `components` folder
+- Create the following components in separate files inside
+  the components folder.  In each one, just render an `h1` 
+  with the name of the component (e.g. return <h1>Navbar goes here</h1>):
+    - Navbar
+    - Main
+- Create an App component outside the components folder (sibling to
+  the index.js file)
+    - Have App render the Navbar and Main components
+- Import and render the App component inside of index.js using ReactDOM
+    - At this point you should have your "Navbar goes here" etc. showing up
+      in the mini-browser.
+- Go to Google fonts and get the "Inter" font with weights 400, 600, and 700.
+  Put the links to those fonts ABOVE the style.css link in index.html (Use
+  the `<link/>` elements instead of the @import or npm options for getting
+  the fonts. You may need to do some extra research to figure out how this 
+  works if you haven't done it before)
+*/

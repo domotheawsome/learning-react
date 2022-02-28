@@ -1,0 +1,17 @@
+.nav {
+    display:flex;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    list-style: none;
+}
+
+.nav-items > li {
+    padding: 10px;
+}
+
+.nav-logo {
+    width: 40px;
+}

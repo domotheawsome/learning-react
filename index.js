@@ -420,3 +420,38 @@ function Page() {
 }
 
 ReactDOM.render(<Page />, document.getElementById("root"))
+
+/* styling with classes */
+
+/**
+Challenge: 
+
+- Add an `ul` inside the Header's `nav` and create
+  the following `li`s: "Pricing", "About", & "Contact"
+*/
+
+function Header() {
+    return (
+        <header>
+            <nav>
+                <img src="./react-logo.png" width="40px" />
+                <ul>
+                    <li>Pricing</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
+        </header>
+    )
+}
+
+// className 
+    // react is turning JSX elements into native DOM elements
+    // ul.className = xxx in vanilla js
+
+import Header from "./Header"
+// ./ is a file in my own project director
+// not a package in dependencies
+import Footer from "./Footer"
+import MainContent from "./MainContent"
+

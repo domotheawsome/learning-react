@@ -1,3 +1,9 @@
+# React Info Page
+
+This project is the final result of the first Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine. Below are images of the interface. 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

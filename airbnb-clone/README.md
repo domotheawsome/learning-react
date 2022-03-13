@@ -1,3 +1,8 @@
+# Airbnb Clone
+
+Part 2 of the Learning React series. Lessons from Scrimba: https://scrimba.com/playlist/pqQgrcN
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

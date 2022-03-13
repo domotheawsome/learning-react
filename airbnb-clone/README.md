@@ -1,3 +1,8 @@
+# Airbnb Clone
+
+This project is the final result of the second Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine. Lesson Playlist: https://scrimba.com/playlist/pqQgrcN
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

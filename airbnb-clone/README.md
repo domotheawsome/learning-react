@@ -1,6 +1,6 @@
 # Airbnb Clone
 
-Part 2 of the Learning React series. Lessons from Scrimba: https://scrimba.com/playlist/pqQgrcN
+This project is the final result of the second Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine. Lesson Playlist: https://scrimba.com/playlist/pqQgrcN
 
 
 # Getting Started with Create React App

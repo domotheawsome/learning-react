@@ -8,6 +8,10 @@
     height: auto;
 }
 
+.gray {
+    color: #918E9B;
+}
+
 body {
     margin: 0;
 }
@@ -43,4 +47,23 @@ nav {
     width: 600px;
     line-height: 1.1em;
 }
-  
+
+.card {
+    width: 300px;
+    font-size: 15px;
+}
+
+.card--caption {
+    display: flex;
+    align-items: center;
+}
+
+.card--star {
+    height: 20px;
+}
+
+.card--img {
+    width: 100%;
+    border-radius: 9px;
+}
+

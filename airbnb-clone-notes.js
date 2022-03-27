@@ -398,3 +398,160 @@ Challenge: Pass props to the Card component and display that data
 
 
 // ezpz, reference the project in the actual folder for this
+
+
+/* review-- array.map() */
+
+// notes from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map 
+
+// map() creates a new array populated with the results of calling a
+// provided function on every element in the calling array.
+
+// syntax:
+// arrow function
+map((element) => { ... })
+map((element, index) => { ... })
+map((element, index, array) => { ... })
+
+// callback function
+map(callbackfn)
+map(callbackfn, thisArg)
+
+// inline callback function
+map(function(element) { ... })
+map(function(element, index, array) { ... }, thisArg)
+
+// callbackfn = function that is called for every element of arr. each 
+// time the callback function is called, the return value is added to the
+// new array
+
+// map calls the callback function once for each element in order and 
+// constructs a new array from the results. it is only invoked for indexes
+// of the array that has assigned values, inlcudes undefined
+
+// does not call for missing elements; indexes that have never been set,
+// indexes that have been deleted.
+
+// thisArg = value to use as this when calling callbackfn
+
+
+// don't use map when you don't use the returned array. use forEach or
+// for ... of instead
+
+// also don't use map when you don't return a value from the callback
+
+// map does not inherently mutate the array (callback may mutate)
+
+// examples:
+
+// mapping array of numbers to array of square roots
+
+const numbers = [1, 4, 9];
+
+const squareRoots = numbers.map((num) => Math.sqrt(num))
+
+console.log(squareRoots)
+
+// using map to reformat objects in an array
+
+const keyvalueArray = [{key: 1, value: 10}, {key:2, value: 20,}, {key:3, value: 30}] 
+
+const reformatted = keyvalueArray.map(({key, value}) => ({[key]: value}))
+
+console.log(reformatted)
+
+// mapping an array of numbers using a function containing an argument
+
+const arr = [1,2,3]
+
+const newArr = arr.map((num) => num * 2)
+
+// num is the argument
+// num => num * 2 is the function
+
+console.log(newArr)
+
+
+// using map generically
+
+const string = Array.prototype.map;
+
+const asciiArr = string.call("hello world", (x) => x.charCodeAt(0));
+
+console.log(asciiArr)
+
+// " use map generically " = using Array.prototype.map() on something that is not an array.
+// using "hello world" works because it returns a length and can be iterated like an array
+
+// prototype = things that are built in to the class
+// in this case, map is a method of the array prototype
+
+// the string "hello world" is not being passed to the function, rather
+// map is being called on the string. hence .call()
+
+
+// using map generically querySelectorAll
+
+const elements = document.querySelectorAll("select option: ")
+
+const newArr = Array.prototype.map.call(elements, ({value}) => value);
+
+const newArr = Array.from(elements)
+
+
+// back to scrimba:
+
+/*
+Challenge 1:
+Given an array of numbers, return an array of each number, squared
+*/
+const nums = [1, 2, 3, 4, 5]
+// -->       [1, 4, 9, 16, 25]
+// Your code here
+
+const newArr = nums.map((elem) => elem ** 2);
+
+console.log(newArr)
+
+/*
+Challenge 2:
+Given an array of strings, return an array where 
+the first letter of each string is capitalized
+*/
+
+const names = ["alice", "bob", "charlie", "danielle"]
+// -->        ["Alice", "Bob", "Charlie", "Danielle"]
+// Your code here
+
+const capital = names.map((name) => {
+    return name[0].toUpperCase() + name.slice(1)
+})
+
+
+console.log(capital)
+
+
+/*
+Challenge 3:
+Given an array of strings, return an array of strings that wraps each
+of the original strings in an HTML-like <p></p> tag.
+
+E.g. given: ["Bulbasaur", "Charmander", "Squirtle"]
+return: ["<p>Bulbasaur</p>", "<p>Charmander</p>", "<p>Squirtle</p>"]
+*/
+
+const pokemon = ["Bulbasaur", "Charmander", "Squirtle"]
+// -->          ["<p>Bulbasaur</p>", "<p>Charmander</p>", "<p>Squirtle</p>"]
+// Your code here
+
+const newArr = pokemon.map((name) => "<p>" + name.slice(0) + "</p>")
+
+console.log(newArr)
+
+// other way to do it via templating (template string)
+
+const newArr = pokemon.map((name) => `<p>${name}</p>`)
+
+console.log(newArr)
+
+

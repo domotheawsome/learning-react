@@ -555,3 +555,128 @@ const newArr = pokemon.map((name) => `<p>${name}</p>`)
 console.log(newArr)
 
 
+/* react renders arrays */
+
+// arrays in react are usually an array of objects
+
+[
+    {
+        firstName: "bob"
+        lastName: "ziroll"
+    }
+]
+// objects represent pieces of data in alot more detail
+
+
+// if we provide array into what we render into our component, react knows
+// how to map over array and turn it into elements. 
+
+// eg:
+
+const colors = ["red", "blue", "yellow"]
+
+<div> 
+    {colors}
+</div>
+
+// react renders it as text
+
+/*
+Challenge: turn the strings in the array into <h3> elements instead
+*/
+
+
+const colors = [<h3>"Red"</h3>, <h3>"Orange"</h3>, <h3>"Yellow"</h3>, <h3>"Green"</h3>, <h3>"Blue"</h3>, <h3>"Indigo"</h3>, <h3>"Violet"</h3>]
+
+<div>
+        {colors}
+</div>
+
+// it displays it as h3 elements. it does throw an error saying each 
+// element needs a unique key prop. 
+
+// this method is better than hardcoding
+
+// get data outside of system, map over it, and render new components for
+// every piece of data
+
+
+/*
+Challenge: See if you can correctly pass the necessary props to the 
+Joke component in the .map() (and render the jokeElements array) so 
+the jokes show up on the page again
+*/
+
+// this was significantly more complex than it should've been. 
+
+// i had the most issues with rendering the component. my main mistakes
+// were:
+    // using the template syntax when it wasn't needed
+    // not returning the joke component properly, i.e. was returning nothing as the joke component was a line below
+    // only printing the console.log
+
+// i did need help from the react server to resolve this on my own without
+// jumping to the explanation. was worth it. 
+
+export default function App() {
+    
+    const jokeElements = jokesData.map(joke => {
+        return <Joke 
+            setup = {<p>{joke.setup}</p>} // joke is object. use dot 
+            // to access setup property
+            punchline = {<p>{joke.punchline}</p>} // same for this
+
+            // no need for template syntax as joke.setup/punchline is already a string
+        />
+    })
+
+    return (
+        <div>
+           {jokeElements} 
+        </div>
+    ) // return the array of components
+    // renders correctly. 
+}
+  
+
+
+/* map quiz */
+
+
+// copied and pasted from scrimba
+
+/* 1. What does the `.map()` array method do?
+
+.map() takes an array and copies each element into a new array
+
+
+
+-- scrimba answer: takes function from parameter and whatever is returned
+from the function will be placed in the same index of a new array
+
+''Returns a new array. Whatever gets returned from the callback
+function provided is placed at the same index in the new array.
+Usually we take the items from the original array and modify them
+in some way.''
+
+2. What do we usually use `.map()` for in React?
+
+taking external data and passing it into components to render onto the screen
+this makes the code much more dynamic as you only use one instance of the component
+rather than hardcoding
+
+-- scrimba answer
+''Convert an array of raw data into an array of JSX elements
+that can be displayed on the page.''
+
+3. Why is using `.map()` better than just creating the components
+   manually by typing them out?
+
+i mentioned this in the previous question but it makes the components more reusable
+passing hardcoded data breaks the reusability aspect of the component. 
+
+-- scrimba answer
+It makes our code more "self-sustaining" - not requiring
+additional changes whenever the data changes.
+
+*/

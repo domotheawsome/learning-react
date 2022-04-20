@@ -1,21 +1,32 @@
 import './styles.css';
-import Nav from "./components/Navbar.js"
-import Hero from "./components/Hero.js"
-import Card from "./components/Card.js"
+import Nav from "./components/Navbar.js";
+import Hero from "./components/Hero.js";
+import Card from "./components/Card.js";
+import data from "./data.js";
 
+const card = data.map(items => {
+  return(
+    <Card
+      key={items.id}
+      img={items.coverImg}
+      rating={items.stats.rating}
+      reviewCount={items.stats.reviewCount}
+      country={items.location}
+      title={items.title}
+      price={items.price}
+    />
+
+  )
+
+})
 function App() {
   return (
     <div>
       <Nav />
-      <Hero />
-      <Card 
-        img="katie.png"
-        rating = "5.0"
-        reviewCount={6}
-        country="argentina"
-        title="life lessons with katie zaferes"
-        price ={136}
-      />
+      { /*<Hero />*/ }
+      <section className='cards-list'>
+        {card}
+      </section>
     </div>
   );
 }

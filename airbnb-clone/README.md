@@ -1,7 +1,7 @@
 # Airbnb Clone
 
-This project is the final result of the second Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine. Below are the images of the interface:
-<img width="414" alt="image" src="https://user-images.githubusercontent.com/52227596/164579353-ee415f70-3829-48e2-89e3-dff553886994.png">
+This project is the final result of the second Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine.
+<img width="414 style="text-align: center" " alt="image" src="https://user-images.githubusercontent.com/52227596/164579353-ee415f70-3829-48e2-89e3-dff553886994.png">
 
 Lesson Playlist: https://scrimba.com/playlist/pqQgrcN
 

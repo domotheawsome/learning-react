@@ -1,6 +1,6 @@
 # learningreact
 
-Learning ReactJS for the Sunwize full stack internship and my own personal development.
+Learning ReactJS for the Sunwize full stack internship.
 
 ## What I've created so far:
 #### React Info Page:

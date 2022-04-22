@@ -1,3 +1,8 @@
+This project is the final result of the Section 2 Solo Project. Follow the instructions below to compile and view the project on your local machine.
+
+https://user-images.githubusercontent.com/52227596/164800603-a404dcdc-e0bd-4e90-8a16-9d1fd3bcf302.mp4
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

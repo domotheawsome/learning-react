@@ -1,8 +1,8 @@
 # React Info Page
 
-This project is the final result of the first Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine. Below are images of the interface. 
+This project is the final result of the first Scrimba tutorial. Follow the instructions below to compile and view the project on your local machine.
 
-
+<img width="505" alt="react-info-page" src="https://user-images.githubusercontent.com/52227596/164801096-2c8b2500-4e82-49e0-a374-2c46d068bd75.png">
 
 # Getting Started with Create React App
 

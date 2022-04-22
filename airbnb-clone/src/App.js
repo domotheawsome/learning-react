@@ -8,12 +8,14 @@ const card = data.map(items => {
   return(
     <Card
       key={items.id}
-      img={items.coverImg}
-      rating={items.stats.rating}
-      reviewCount={items.stats.reviewCount}
-      country={items.location}
-      title={items.title}
-      price={items.price}
+      {...items}
+      //img={items.coverImg}
+      //rating={items.stats.rating}
+      //reviewCount={items.stats.reviewCount}
+      //country={items.location}
+      //title={items.title}
+      //price={items.price}
+      //openSpots={items.openSpots}
     />
 
   )
@@ -23,7 +25,7 @@ function App() {
   return (
     <div>
       <Nav />
-      { /*<Hero />*/ }
+      <Hero />
       <section className='cards-list'>
         {card}
       </section>

@@ -1,3 +1,11 @@
+This project is the final result of the Section 2 Solo Project. Follow the instructions below to compile and view the project on your local machine.
+
+<img width="527" alt="travel-journal" src="https://user-images.githubusercontent.com/52227596/164800782-bb5f8b1d-c81a-45d5-b987-2c39a6b6ee87.png">
+
+
+https://user-images.githubusercontent.com/52227596/164800603-a404dcdc-e0bd-4e90-8a16-9d1fd3bcf302.mp4
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -680,3 +680,15 @@ It makes our code more "self-sustaining" - not requiring
 additional changes whenever the data changes.
 
 */
+
+// map badges via conditional rendering
+
+// instead of passing in all of the props one by one, simply
+// pass in the array and access the elements within the props
+
+// i don't like this as much, its better in my opinion to see it
+// from a high level view. 
+
+// {...item} spreads the props of the items into componenet
+// personally better than just passing the array and dereferencing it
+// within the component

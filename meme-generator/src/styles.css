@@ -29,7 +29,7 @@ main {
 }
 
 .nav--title {
-    margin-left: -10px;
+    margin-right: auto;
     font-size: 18px;
 
 }
@@ -47,6 +47,7 @@ main {
     display: grid;
     grid-template: 40px 40px  / 1fr 1fr;
     gap: 17px;
+    margin-bottom: 17px;
 
 }
 
@@ -76,4 +77,5 @@ main {
 
 .meme--image {
     max-width: 100%;
+    border-radius: 3px;
 }

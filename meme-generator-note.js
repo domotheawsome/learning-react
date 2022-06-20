@@ -464,3 +464,408 @@ function toggleFavorite() {
         )
     })
 }
+
+/* passing state as props */
+
+    /**
+     * Challenge:
+     * - Create a new component named Count
+     *    - It should receive a prop called `number`, whose value
+     *      is the current value of our count
+     *    - Have the component render the whole div.counter--count
+     *      and display the incoming prop `number`
+     * - Replace the div.counter--count below with an instance of
+     *   the new Count component
+     */
+     return (
+        <div className="counter">
+            <button className="counter--minus" onClick={subtract}>–</button>
+            <Count 
+                number={count}
+            />
+            <button className="counter--plus" onClick={add}>+</button>
+        </div>
+    )
+}
+
+// this is my Count.js (component) file
+
+import React from "react"
+//import hero from "./images/airbnb-hero.png"
+function Count (props) {
+    return (
+       <div className="counter--count">
+              <p>{props.number}</p>
+        </div>
+    )
+}
+
+export default Count;
+
+
+/* setting state from child components */
+
+// i thought this was mildly stupid since you can pass in a reference
+// to the function and it would work just fine
+
+
+// here essentially i had to back track and pass in the isFavorite directly,
+// thus eliminating the toggle mechanism
+
+// app.js 
+
+export default function App() {
+    const [contact, setContact] = React.useState({
+        firstName: "John",
+        lastName: "Doe",
+        phone: "+1 (719) 555-1212",
+        email: "itsmyrealname@example.com",
+        isFavorite: false
+    })
+    
+    /**
+     * Challenge: Move the star image into its own component (Star)
+     * - It should receive a prop called `isFilled` that it
+     *   uses to determine which icon it will display
+     * - Import and render that component, passing the value of
+     *   `isFavorite` to the new `isFilled` prop.
+     * - Don't worry about the abiliity to flip this value quite yet.
+     *   Instead, you can test if it's working by manually changing
+     *   `isFavorite` in state above.
+     */
+    
+    let starIcon = contact.isFavorite ? "star-filled.png" : "star-empty.png"
+    
+    function toggleFavorite() {
+        setContact(prevContact => ({
+            ...prevContact,
+            isFavorite: !prevContact.isFavorite
+        }))
+    }
+    
+    return (
+        <main>
+            <article className="card">
+                <img src="./images/user.png" className="card--image" />
+                <div className="card--info">
+                    <Star 
+                        isFilled={contact.isFavorite}
+                    />
+                    
+                    <h2 className="card--name">
+                        {contact.firstName} {contact.lastName}
+                    </h2>
+                    <p className="card--contact">{contact.phone}</p>
+                    <p className="card--contact">{contact.email}</p>
+                </div>
+                
+            </article>
+        </main>
+    )
+}
+
+// star.js (component)
+
+import React from "react"
+//import hero from "./images/airbnb-hero.png"
+function Count (props) {
+    let starIcon = props.isFilled ? "star-filled.png" : "star-empty.png"
+    return (
+        <img 
+            src={`../images/${starIcon}`} 
+            className="card--favorite"
+        />
+    )
+}
+
+export default Count;
+
+
+/* passing data around */
+
+// here we recognize that we should populate state from a parent component and let it trickle to the child components. example below:
+
+
+// header.js (child)
+
+import React from "react"
+
+export default function Header(props) {
+    
+    /**
+     * Challenge:
+     * Raise state up a level and pass it down to both the
+     * Header and Body components through props.
+     */
+    
+    
+    return (
+        <header>
+            <p>Current user: {props.user}</p>
+        </header>
+    )
+}
+
+// app.js (parent)
+
+
+
+
+/* boxes challenge 1 */
+
+// this is my work for the first part in app.js
+// pretty much i imported the data, initialized the state to the data object, mapped over the object using .map() into an array, and rendered it with a separate component.
+
+// i couldn't figure out styling so it has a bunch of stuff in it, but it is initialized and mapped correctly
+
+* Challenge part 1:
+* 1. Initialize state with the default value of the
+*    array pulled in from boxes.js
+* 2. Map over that state array and display each one
+*    as an empty square (black border, transparent bg color)
+*    (Don't worry about using the "on" property yet)
+*/
+
+const [box, setBox] = React.useState(boxes)
+
+const renderBox = box.map(box=>{
+   return (
+       <Box 
+           key={box.id}
+           id={box.id}
+           on={box.on}   
+       />
+   )
+})
+
+return (
+   <main>
+       <h1>Boxes will go here</h1>
+       {renderBox}
+   </main>
+)
+}
+
+// idk what was wrong with the styles but according to scrimba i did everything correctly
+
+/* dynamic styles */
+
+// style prop
+
+// concept: add an atribute called style and add css code in html
+
+// because its javascript, you can change style dynamically depending on state
+
+// first set of curly braces = entering into js outisde of jsx
+// second set of curly braces = represents js object as a style, putting style inside of object
+<div style={{}}></div>
+// create separate variables (styles) and set it equal to the object
+// you can put styles directly in the markup
+// styles need to be camel case
+
+// background-color = no
+// backgroundColor = yes
+
+// this is primarily good for changing style with state
+
+
+// here is the challenge
+// pretty much i just added the ternary, if its true then its set to dark, if its false its set to true
+
+// i set the style equal to the js object and the style is already passed into the component
+
+// it works as expected
+
+// according to scrimba, it was easier just to put what my var directly in styles, no need to separate it out using let. 
+
+/* boxes challenge part 2 */
+
+// did everything correctly, just forgot to import the box component in apps, and thus it was a little broken. everything works fine now though
+
+// app.js
+export default function App() {
+    const [squares, setSquares] = React.useState(boxes)
+    
+    const squareElements = squares.map(square => (
+        <Box 
+            key={square.id}
+            on={square.on}
+        />
+    ))
+    /**
+     * Challenge part 2:
+     * 1. Create a separate component called "Box" and
+     *    replace the `div` above with our <Box /> components
+     * 2. Pass the Box component a prop called `on` with the
+     *    value of the same name from the `boxes` objects
+     * 3. In the Box component, apply dynamic styles to determine
+     *    the backgroundColor of the box. If it's `on`, set the
+     *    backgroundColor to "#222222". If off, set it to "none"
+     */
+    
+    return (
+        <main>
+            {squareElements}
+        </main>
+    )
+}
+
+
+// box.js
+
+import React from "react"
+
+
+export default function Box(props) {
+    let style = {
+        backgroundColor: props.on ? "#222222" : "none"
+    }
+    
+    return (
+        <div className="box" key={props.id} style={style} />
+    )
+}
+
+/* boxes challenge part 3.1 */
+
+// we have no way of changing the data in the props
+// we do not want to change the props directly once its passed into the component, this defeats the purpose of props.
+// therefore we can change it using state within the component to update it and use state
+// we add local state to change the value of the box instead of changing the prop pretty much
+
+
+// here is the challenge
+// this one did take me a second as i do not fully grasp state just yet. it was a very good practice in understanding
+// essentially i was trying to reassign the state object instead of just returning the new state in the setter function
+// now i know to just return my new state
+// no need to try and mess around with the current state
+
+
+* Challenge: Create state controlling whether
+* this box is "on" or "off". Use the incoming
+* `props.on` to determine the initial state.
+* 
+* Create an event listener so when the box is clicked,
+* it toggles from "on" to "off".
+* 
+* Goal: clicking each box should toggle it on and off.
+*/
+// here we declare the state (state object and setter function)
+// we initalize it with the props.on object
+// it is either true or false depending on what was passed in
+const [box, setBox] = React.useState(props.on)
+function changeBox() {
+  return setBox(function newBox(prevBox) {
+      return(
+           !prevBox   
+      )
+  })
+}
+console.log(box)
+const styles = {
+   backgroundColor: box ? "#222222" : "transparent"
+}
+
+return (
+   <div style={styles} onClick={changeBox} className="box"></div>
+)
+}
+
+// a better practice in writing short functions:
+
+function toggle() {
+    setBox(prevBox=> !prevBox)
+}
+
+// this actually isnt good practice
+// if we find ourselves using state in the child components based on props, theres probably a better way to do it in the parent components
+// this is what i mean by passing in the state, as i did way back in the prev examples
+
+// adding state in the child components is called "derived state"
+
+// we created state in the app and state in the box
+// thus we have "two sources of truth"
+
+// this state only updates the local state and not the app (parent) state
+// it only updated based on the incoming props, thus "deriving" state
+
+
+// the challenge was very easy, just passing the function down. its as easy as passing in the function declaration as a prop and calling it inside the function as props.toggle. this is what i did before. 
+
+// app.js
+
+    /**
+     * Challenge: Create a toggle() function that logs
+     * "clicked!" to the console
+     * 
+     * Pass that function down to each of the Box components
+     * and set it up so when they get clicked it runs the function
+     */
+    
+     function toggle() {
+        return console.log("clicked!")
+    }
+// box.js
+
+return (
+    <div 
+        style={styles} 
+        className="box"
+        onClick={props.toggle}
+    >
+    </div>
+)
+}
+    
+
+
+
+/* boxes challenge part 4 */
+
+// this took me a LONG time to figure out
+// the main issue i had was updating the array correctly and not mutating the current state array
+// which is what i was doing previously
+// after looking at the react docs (god bless the react docs) i learned i needed to copy the state array and mutate the item at the copied index
+// and now it works
+// its also 1-indexed, so i had to subtract id-1 to get it to toggle correctly
+// here is my function, it differs from how scrimba teaches it but this makes sense to me 
+
+
+export default function App() {
+    const [squares, setSquares] = React.useState(boxes)
+    
+    function toggle(id) {
+        /**
+         * Challenge: use setSquares to update the
+         * correct square in the array.
+         * 
+         * Make sure not to directly modify state!
+         * 
+         * Hint: look back at the lesson on updating arrays
+         * in state if you need a reminder on how to do this
+         */
+        
+        setSquares(squares.map((s, i) => {
+            
+            if(i === id-1) {
+                return {...s, on: !s.on}
+            } else {
+                return s
+            }
+        }))
+    }
+
+    const squareElements = squares.map(square => (
+        <Box 
+            key={square.id} 
+            on={square.on} 
+            toggle={() => toggle(square.id)}
+        />
+    ))
+    
+    return (
+        <main>
+            {squareElements}
+        </main>
+    )
+}

@@ -869,3 +869,121 @@ export default function App() {
         </main>
     )
 }
+
+/* conditional rendering && */
+
+// i got the hang of state for the most part, so this wasnt too difficult. and i remember conditional rendering from the airbnb clone, so i just implemented the conditional rendering part so the punchline only shows when clicked.
+
+// i did get mixed up on the arrow functions again, but i looked back in the notes and resolved it. 
+
+// i think it was an issue with the ternary conditional? i was essentially evaluating if the opposite was true or false, then return that value. it was way easier just to return the ! operator and it made more sense
+
+// overall it works well and i think i solved the next challenge with this
+
+export default function Joke(props) {
+    /**
+     * Challenge:
+     * - Create state `isShown` (boolean, default to `false`)
+     * - Add a button that toggles the value back and forth
+     */
+    
+    const [isShown, setIsShown] = React.useState(false)
+    
+    function toggleIsShown() {
+        console.log(isShown)
+        return setIsShown(prevShown => !prevShown)
+    }
+    
+    return (
+        
+        <div>
+            {props.setup && <h3>{props.setup}</h3>}
+            <button onClick={toggleIsShown}> Show Punchline </button>
+            {isShown && <p>{props.punchline}</p>}
+            <hr />
+        </div>
+    )
+}
+
+// update: i was correct
+
+/* conditional rendering: && practice */
+
+// this was very simple, just adding the conditional rendering and the number of messages.
+
+export default function App() {
+    const [messages, setMessages] = React.useState(["a", "b"])
+    /**
+     * Challenge:
+     * - Only display the <h1> below if there are unread messages
+     */
+    return (
+        <div>
+            {messages.length > 0 && <h1>You have {messages.length} unread messages!</h1>}
+        </div>
+    )
+}
+
+/* conditional rendering: ternary */
+
+// how to toggle the button text? simply use a ternary. if isShown is true, it displays "show punchline" otherwise it displays "hide punchline"
+
+
+<button onClick={toggleShown}>{isShown ? "Hide Punchline" : "Show Punchline"}</button>
+
+/* conditional rendering practice */
+
+// i think theres a more concise way to do this, but this makes the most sense and is the most readable
+// i could condense it to one line of code, but it would get a bit packed and defeat the purpose of readability
+
+const [messages, setMessages] = React.useState(["a", "b"])
+/**
+ * Challenge:
+ * - If there are no unread messages, display "You're all caught up!"
+ * - If there are > 0 unread messages, display "You have <n> unread
+ *   message(s)"
+ *      - If there's exactly 1 unread message, it should read "message"
+ *        (singular)
+ * 
+ */
+return (
+    <div>
+        {messages.length == 0 && <p>You're all caught up!</p>}
+        {messages.length > 0 && <p>You have {messages.length} unread message{messages.length == 1 ? "" : "s"}</p>}
+    </div>
+)
+}
+
+// this was a portion of scrimbas solution, it is more intuitive by using only one ternary. i like it.
+
+<div>
+{
+    messages.length === 0 ?
+    <h1>You're all caught up!</h1> :
+    <h1>
+        You have {messages.length} unread {messages.length > 1 ? "messages" : "message"}
+    </h1>
+}
+</div>
+
+/* conditional rendering quiz */
+
+/*
+1. What is "conditional rendering"?
+
+conditional rendering is when you render an item based on its truthiness
+
+2. When would you use &&?
+
+if you want to show an item if its true
+
+
+3. When would you use a ternary?
+
+if you want to select between two options, usually true or false
+
+4. What if you need to decide between > 2 options on
+   what to display?
+
+i would use an if statement or break into a separate toggle function
+*/

@@ -987,3 +987,347 @@ if you want to select between two options, usually true or false
 
 i would use an if statement or break into a separate toggle function
 */
+
+/* forms */
+
+/* watch for input changes in react */
+
+// maintain up-to-date state for any change for any input in the form
+
+// create state to hold input
+
+const [firstName, setFirstName] = React.useState("")
+
+// listen to changes in input
+// "onChange", set it equal to function "handleChage"
+
+function handleChange() {
+    console.log("Changed!")
+}
+
+/* form inputs practice */
+
+export default function Form() {
+    const [firstName, setFirstName] = React.useState("")
+    const [lastName, setLastName] = React.useState("")
+    /**
+     * Challenge: Track the applicant's last name as well
+     */
+    
+    function handleChange(event) {
+        setFirstName(event.target.value)
+    }
+    
+    function handleChange2(event) {
+        setLastName(event.target.value)
+    }
+    console.log(firstName, lastName)
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange2}
+            />
+        </form>
+    )
+}
+
+/* form state object */
+
+// use an object to store the form input fields
+const [formData, setFormData] = React.useState({ firstName: ""
+, lastName: ""})
+
+// handle the change with a callback function (you need to remember the previous states to store in the input field)
+
+function handleChange(event) {
+    setFormData(prevFormData => {
+        return {
+            ...prevFormData, [event.target.name]: event.target.value
+        }
+    })
+}
+
+/* form state object practice */
+
+// adding the email was very easy, just made a new input element and added the email to the state object list
+
+export default function Form() {
+    const [formData, setFormData] = React.useState(
+        {firstName: "", lastName: "", email: ""}
+    )
+    
+    /**
+     * Challenge: add an email field/state to the form
+     */
+    
+    console.log(formData)
+    
+    function handleChange(event) {
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+                value={formData.firstName}
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange}
+                name="lastName"
+                value={formData.lastName}
+            />
+            <input
+                type="text"
+                placeholder="email"
+                onChange={handleChange}
+                name="email"
+                value={formData.email}
+            />
+        </form>
+    )
+}
+
+// another note: you need to set the value of the input to the name of the state object
+
+
+// textarea for react
+// very similar to html just a selfclosing element
+// you declare it:
+
+<textarea value={} />
+
+// everything else is the same thing as inputs. 
+
+    
+    /**
+     * Challenge: Add a textarea for "comments" to the form
+     * Make sure to update state when it changes.
+     */
+
+// same thing as above, here is my textarea element
+
+
+
+// ----->  <textarea placeholder="comments" onChange={handleChange} name="comments" value={formData.comments}/>
+
+
+//erewr
+// htmlFor property, use with label
+// point label element to input element id with htmlFor
+
+// use checked prop
+
+// ----> <input checked={}/>
+
+// with checkbox, look at event.target.checked not event.target.value
+
+
+// you can make the handleChange function more efficient using ternary operator
+
+const {type, checked} = event.target
+
+[name]: type === "checkbox" ? checked : value
+
+
+// when a change happens, it will set the state to the value
+// to associate input with correct piece of state & not click inputs with each state
+// add name to inputs, same name to all radio button inputs
+
+// updating only one property of radio button when only one input is selected
+
+// id is different, name is the same
+// hooked up correctly to state
+
+// specify what value state should take on based on state
+// can't use controlled components. radio buttons are controlled same way check boxes are controlled.
+
+// use checked prop to show the checked in the input element
+
+
+/* select box */
+
+// use it to select options in drop down
+
+// add value prop with function
+
+// add onChange handler
+
+// mirror name to state
+
+
+<select 
+    id="favColor"
+    value={formData.favColor}
+    onChange={handleChange}
+    name="favColor"
+>
+    <option value="red">Red</option>
+</select>
+
+/* submit */
+
+// either use type="submit" or use the buttom element in the form element
+
+// create handleSubmit function
+
+// take the current state
+// submitToApi(), pass in the formData State Object and do whatever as its nice and updated
+
+// run event.preventDefault()
+// this will stop page from rerendering
+// this is appropriate for saving the state object
+
+/* forms quiz */
+
+/* 
+1. In a vanilla JS app, at what point in the form submission
+   process do you gather all the data from the filled-out form?
+   
+
+it mentioned something about the php and post
+
+answer: right before the form is submitted
+
+
+
+2. In a React app, when do you gather all the data from
+   the filled-out form?
+
+you gather it at the end when you hit the submit button. the form is continually updated with state changes
+
+3. Which attribute in the form elements (value, name, onChange, etc.)
+   should match the property name being held in state for that input?
+   
+the name prop
+
+4. What's different about a saving the data from a checkbox element
+   vs. other form elements?
+
+checkbox needs to use the checked prop to actually change. other elements use the value prop
+
+5. How do you watch for a form submit? How can you trigger
+   a form submit?
+   
+if the submit button is clicked, it will trigger a state function that 1. prevents the page from rerendering 2. saves the final state object. you don't necessarily watch for it, its wrapped in the same input tag but with a type of "submit" or a button.
+
+answer: onSubmit handler on the `form` element. can trigger form submit with a button click.
+*/
+
+/* sign up form practice */
+
+// this is quite alot but here is the completed form/challenge
+
+ /**
+     * Challenge: Connect the form to local state
+     * 
+     * 1. Create a state object to store the 4 values we need to save.
+     * 2. Create a single handleChange function that can
+     *    manage the state of all the inputs and set it up
+     *    correctly
+     * 3. When the user clicks "Sign up", check if the 
+     *    password & confirmation match each other. If
+     *    so, log "Successfully signed up" to the console.
+     *    If not, log "passwords to not match" to the console.
+     * 4. Also when submitting the form, if the person checked
+     *    the "newsletter" checkbox, log "Thanks for signing
+     *    up for our newsletter!" to the console.
+     */
+    
+  const [formData, setFormData] = React.useState({email: "", password: "", confirmPassword: "", newsletter: ""})
+    
+  console.log(formData.email, formData.password, formData.newsletter)
+  
+  function handleChange(event) {
+      const {name, value, type, checked} = event.target
+      setFormData(prevFormData =>  { return {
+          ...prevFormData, [name]: type==="checkbox" ? checked : value
+      }})
+  }
+  
+  function handleSubmit(event) {
+    event.preventDefault()
+    const {checked} = event.target
+    formData.password === formData.confirmPassword ? console.log("successfully signed up") : console.log("passwords do not match")
+    if(formData.newsletter === true) {
+        console.log("thanks for signing up for newsletter!")
+    }
+}
+  
+  return (
+      <div className="form-container">
+          <form className="form" onSubmit={handleSubmit}>
+              <input 
+                  type="email" 
+                  placeholder="Email address"
+                  className="form--input"
+                  value={formData.email}
+                  name="email"
+                  onChange={handleChange}
+              />
+              <input 
+                  type="password" 
+                  placeholder="Password"
+                  className="form--input"
+                  name="password"
+                  onChange={handleChange}
+                  value={formData.password}
+              />
+              <input 
+                  type="password" 
+                  placeholder="Confirm password"
+                  className="form--input"
+                  name="confirmPassword"
+                  onChange={handleChange}
+                  value={formData.confirmPassword}
+              />
+              
+              <div className="form--marketing">
+                  <input
+                      id="okayToEmail"
+                      type="checkbox"
+                      name="newsletter"
+                      onChange={handleChange}
+                      value={formData.newsletter}
+                      
+                  />
+                  <label htmlFor="okayToEmail">I want to join the newsletter</label>
+              </div>
+              <button 
+                  className="form--submit"
+              >
+                  Sign up
+              </button>
+          </form>
+      </div>
+  )
+}
+
+// pretty much it does what it is supposed to
+// creates a state object
+// has a field for each input
+// updates on key change
+// once you hit submit the page doesn't rerender
+
+/* project: add text to image */
+
+// this wasn't too hard, especially with all the forms work
+// i think i did it correctly, it updates with state

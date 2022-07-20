@@ -1331,3 +1331,298 @@ answer: onSubmit handler on the `form` element. can trigger form submit with a b
 
 // this wasn't too hard, especially with all the forms work
 // i think i did it correctly, it updates with state
+
+/* making api calls */
+
+// in react, we need to interact with api that lives outside of application
+
+// requesting info from api
+    // use/display the data somehow
+    // fetch and save it to state
+// submitting info to api
+    // 
+
+// component is running over and over again
+// its because fetch is at top level
+// keeps calling the api over and over again
+
+// side effects == effect
+
+/* intro to useEffect */
+
+// what are reacts primary tasks?
+
+// work with dom/browser to render UI to the page
+// manage state for us between render cycles
+    // state values are remembered from one render to another (useState)
+// keep the ui updated when state changes occur
+
+// what can't react handle?
+
+// (out)side effects
+    // anything outside of reacts reach
+    // localStorage
+    // API/database interactions 
+        // can write code to interact apis but react isnt in charge of the code
+    // websockets/subscriptions
+    // syncing 2 different internal states together
+        // react isnt looking at cross over between the state
+    // pretty much anything react isnt in charge of
+    // react is DECLARATIVE
+
+// useEffect() / effect hook
+    // tool to interact outside of react ecosystem
+    // react is pretty much state/props/ui on page
+
+// useEffect = synchronize react state with outside systems (localStorage. API)
+
+
+/* useEffect() syntax and default behavior */
+
+// create a sideeffect:
+
+React.useEffect()
+// one required param and optional second param
+
+//  required param = callback function
+
+React.useEffect(function() {
+
+})
+// function acts as a place to put side effects code
+
+// side effect = reaching outside of ecosystem but trying to set state in the process
+
+React.useEffect(function() {
+    fetch()
+        .then()
+})
+// we can put code inside of useEffect inside that interacts with other systems
+
+/* use effect dependencies array */
+
+// second param = dependecies array
+// contains values that if they change from one render to the next, will cause efefct to run
+// limits/determines number of times effect will run
+
+// empty array [], run on the very first render and then doesn't run again
+
+// challenge was easy, just rewriting the code from before
+
+    /**
+     * Challenge: re-write the useEffect
+     * It should run any time `count` changes
+     * For now, just console.log("Effect function ran")
+     */
+    
+     React.useEffect(function() {
+        console.log("effect function ran")
+    }, [count])
+
+/* useEffect quiz */
+
+
+/* 
+1. What is a "side effect" in React? What are some examples?
+
+its anything that happens outside of the react ecosystem. using localStorage, subscriptions, API, keeping two states in sync, etc.
+
+2. What is NOT a "side effect" in React? Examples?
+
+working with the dom/browser to render the ui to the page. also state. anything that react can use/is declarative
+
+3. When does React run your useEffect function? When does it NOT run
+   the effect function?
+
+when side effects occur after rendering
+when side effects do not occur/while rendering
+thus, it doesn't block the render or the ui
+
+
+4. How would you explain what the "dependecies array" is?
+
+it saves the render result. the effect is only executed when the dependencies array changes
+
+answer: an array of values
+-- compares value of original array with values with new array
+-- if any values are not the same, it will rerun the effect function
+
+
+-- a way for react to know whether it should re-run the effect function
+*/
+
+/* useEffect */
+
+// this was a pretty simple challenge
+// had to look back on the airbnb notes to see how to update count
+
+// also how to figure out how to change the dependencies array on each re-render
+// in this case it would be count, as the component rerenders with count
+
+    
+    /**
+     * Challenge: Combine `count` with the request URL
+     * so pressing the "Get Next Character" button will
+     * get a new character from the Star Wars API.
+     * Remember: don't forget to consider the dependencies
+     * array!
+     */
+    
+     React.useEffect(function() {
+        console.log("Effect ran")
+        fetch(`https://swapi.dev/api/people/${count}`)
+            .then(res => res.json())
+            .then(data => setStarWarsData(data))
+    }, [count])
+
+    /* project: get memes from api */
+
+    // this challenge wasn't extremely difficult, just changing the getMemeImage function was tough to understand at first
+    
+    // first and foremost, the state is already an array so theres no need to initialize a new array
+
+    // second, i can access the state array directly, and manipulate it to get the url.
+
+    // its actually pretty simple from a big picture standpoint, just getting the fetch/.then promises to work correctly and getting the ccorrect meme to render
+    
+    // as far as i'm concerned it works great
+
+        /**
+     * Challenge: 
+     * As soon as the Meme component loads the first time,
+     * make an API call to "https://api.imgflip.com/get_memes".
+     * 
+     * When the data comes in, save just the memes array part
+     * of that data to the `allMemes` state
+     * 
+     * Think about if there are any dependencies that, if they
+     * changed, you'd want to cause to re-run this function.
+     * 
+     * Hint: for now, don't try to use an async/await function.
+     * Instead, use `.then()` blocks to resolve the promises
+     * from using `fetch`. We'll learn why after this challenge.
+     */
+    
+         const [meme, setMeme] = React.useState({
+            topText: "",
+            bottomText: "",
+            randomImage: "http://i.imgflip.com/1bij.jpg" 
+        })
+        const [allMemes, setAllMemes] = React.useState([])
+        
+        React.useEffect(() => {
+            console.log("use effect")
+           fetch("https://api.imgflip.com/get_memes")
+                .then(res => res.json())
+                .then(d => setAllMemes(d.data.memes)) 
+        },[meme])
+        
+        console.log(allMemes)
+        
+        function getMemeImage() {
+            const randomNumber = Math.floor(Math.random() * allMemes.length)
+            const url = allMemes[randomNumber].url
+            setMeme(prevMeme => ({
+                ...prevMeme,
+                randomImage: url
+            }))
+            
+        }
+
+
+/* state and effect practices */
+
+// this challenge wasn't difficult
+// i forgot how the conditional rendering is suppsoed to be set up
+// i am sure he will address it
+
+    /**
+     * Challenge:
+     * 1. Create state called `show`, default to `true`
+     * 2. When the button is clicked, toggle `show`
+     * 3. Only display `<WindowTracker>` if `show` is `true`
+     */
+    
+    
+     const [show, setShow] = React.useState(true)
+    
+     function toggleShow() {
+         // use callback function to determine next state
+         setShow(prevShow => !prevShow)
+     }
+     
+     return (
+         <div className="container">
+             <button onClick={toggleShow}>
+                 Toggle WindowTracker
+             </button>
+             {show && <WindowTracker />}
+         </div>
+     )
+ }
+
+ // the way the challenges are set up definitely makes them easy.
+ // this took me .1 seconds to do
+ // straightforward, just adding state, updating the state in useEffect, and showing hte state in the h1
+
+     /**
+     * Challenge:
+     * 1. Create state called `windowWidth`, default to 
+     *    `window.innerWidth`
+     * 2. When the window width changes, update the state
+     * 3. Display the window width in the h1 so it updates
+     *    every time it changes
+     */
+    
+      const [windowWidth, setWindowWidth] = React.useState("") 
+    
+      React.useEffect(() => {
+          window.addEventListener("resize", function() {
+              setWindowWidth(window.innerWidth)
+          })
+      }, [])
+      
+      return (
+          <h1>Window width: {windowWidth}</h1>
+      )
+  }
+
+/* useEffect cleanup */
+
+// when toggle the windowwidth on, useEffect will run after h1 has been rendered
+// useEFfect has no dependencies, no need to re-register new event listneer
+// when resize, its reacting to the event listener
+// toggle off window tracker, takes function from useEffect and runs it
+// 
+
+/* async function inside of useEffect */
+
+// no challenges here, but i thought this note would be worthwile
+
+    /**
+    useEffect takes a function as its parameter. If that function
+    returns something, it needs to be a cleanup function. Otherwise,
+    it should return nothing. If we make it an async function, it
+    automatically retuns a promise instead of a function or nothing.
+    Therefore, if you want to use async operations inside of useEffect,
+    you need to define the function separately inside of the callback
+    function, as seen below:
+    */
+
+    React.useEffect(() => {
+        async function getMemes() {
+            const res = await fetch("https://api.imgflip.com/get_memes")
+            const data = await res.json()
+            setAllMemes(data.data.memes)
+        }
+        getMemes()
+    }, [])
+
+
+/* RECAP!!!! */
+
+// event listeners
+// state
+// conditional rendering
+// forms
+// side effects/effects
